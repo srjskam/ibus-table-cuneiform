@@ -1,7 +1,7 @@
 # ibus-table-cuneiform
 
 An input method to write Sumero-Akkadian cuneiform using IBUS table engine. 
-The sign data is from University of Pennsylvania's Oracc project's sign list that can be found here: 
+The sign data is from University of Pennsylvania's Oracc project's (http://oracc.museum.upenn.edu/) sign list that can be found here: 
 https://github.com/oracc/coredata/blob/master/sign/ogsl-sl.xml .
 
 # Requirements
@@ -27,7 +27,7 @@ You can
 
 After installing and restarting the engine, the input method can be found under language "other".
 The input is in ASCII and follows Oracc's conventions (http://oracc.museum.upenn.edu/doc/help/editinginatf/primer/inlinetutorial/index.html).
-Long vowels are written by doubling. :
+Long vowels are written by doubling.
 
 ASCII | Unicode
 --- | ---
@@ -46,5 +46,5 @@ ee|ē
 ii|ī
 uu|ū
 
-As expected, sign names are to be written in capital (and without pipes ('|'), and readings in lower case.
-If a reading has multiple unicode candidates, they a differented by the sign name in parenthesis. 
+As expected, sign names are to be written in upper case (and without pipes ('|')), and readings in lower case.
+If a reading has multiple candidates, they are differented by the sign name in parenthesis. 
