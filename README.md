@@ -45,4 +45,4 @@ ii|ī
 uu|ū
 
 As expected, sign names are to be written in upper case (and without pipes ('|')), and readings in lower case.
-If a reading has multiple candidates, they are differented by the sign name in parenthesis. 
+If a reading has multiple candidates, they are differentiated by the sign name in parenthesis. 
