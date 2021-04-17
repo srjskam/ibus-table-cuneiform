@@ -21,8 +21,6 @@ Making the project fetches the sign list, creates the table, installs it into ib
 make install
 ```
 
-You can 
-
 # Usage
 
 After installing and restarting the engine, the input method can be found under language "other".
