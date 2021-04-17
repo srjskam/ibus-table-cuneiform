@@ -13,10 +13,15 @@ sudo apt install ibus ibus-table python3 make
 
 # Installation
 
+You can use the .deb package provided under 'Releases' on the right.
+
+You can also install the project using make.
 Making the project fetches the sign list, creates the table, installs it into ibus-table's default directory for custom tables, and restarts IBUS.
 ```bash
-make
+make install
 ```
+
+You can 
 
 # Usage
 

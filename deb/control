@@ -1,0 +1,10 @@
+Package: ibus-table-cuneiform
+Version: 1.0.0
+Section: Utilities
+Priority: optional
+Architecture: all
+Depends: ibus-table, ibus
+Maintainer: srjskam@iki.fi
+Description: Cuneiform input method for ibus-table
+ An input method to write Sumero-Akkadian cuneiform using IBUS table engine. 
+ https://github.com/srjskam/ibus-table-cuneiform
