@@ -21,8 +21,6 @@ Making the project fetches the sign list, creates the table, installs it into ib
 make install
 ```
 
-You can 
-
 # Usage
 
 After installing and restarting the engine, the input method can be found under language "other".
@@ -40,11 +38,11 @@ s'/S'|	ś/Ś
 x |	 ₓ 
 h,/H, |	ḫ/Ḫ
 j/J|	ŋ/Ŋ
-uu|û'
+uu|û
 aa|ā
 ee|ē
 ii|ī
 uu|ū
 
 As expected, sign names are to be written in upper case (and without pipes ('|')), and readings in lower case.
-If a reading has multiple candidates, they are differented by the sign name in parenthesis. 
+If a reading has multiple candidates, they are differentiated by the sign name in parenthesis. 
