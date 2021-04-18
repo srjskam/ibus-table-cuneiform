@@ -2,7 +2,7 @@
 
 An input method to write Sumero-Akkadian cuneiform using IBUS table engine. 
 The sign data is from University of Pennsylvania's Oracc project's (http://oracc.museum.upenn.edu/) sign list that can be found here: 
-https://github.com/oracc/coredata/blob/master/sign/ogsl-sl.xml .
+https://raw.githubusercontent.com/oracc/ogsl/master/00lib/ogsl.asl .
 
 # Requirements
 
