@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[77]:
+# In[42]:
 
 
 from xml.dom import minidom
@@ -10,7 +10,7 @@ with open('ogsl.asl', 'r') as infile:
     asl = infile.read()
 
 
-# In[78]:
+# In[43]:
 
 
 reps = [
@@ -58,7 +58,7 @@ def to_ascii(s):
     
 
 
-# In[79]:
+# In[44]:
 
 
 def unistr2unicode(x):
@@ -69,7 +69,7 @@ print(unistr2unicode("x12000.x12094.x1223E"))
 print(unistr2unicode("x12000"))
 
 
-# In[80]:
+# In[45]:
 
 
 def maybeadd(reading, unic, sign='', prio = 1000):
@@ -81,7 +81,7 @@ def maybeadd(reading, unic, sign='', prio = 1000):
         mapping[reading].add((unic,sign,prio))
 
 
-# In[81]:
+# In[46]:
 
 
 mapping = {}
@@ -105,10 +105,10 @@ for line in asl.splitlines():
                 maybeadd(sign, unic, sign)
             if sign and funic and in_form: # end sign also ends last form
                 maybeadd(sign, funic, sign)
-            if listcodes != [] :
+            if listcodes != [] and unic:
                 for listcode in listcodes:
                     maybeadd(listcode, unic, sign, 500)
-                listcodes=[]
+        listcodes=[]
         in_form = False
         unic = None
         funic = None
@@ -150,9 +150,10 @@ print(mapping['darengal'])
 print(mapping['LAK797'])
 print(mapping["'u4"])
 print(mapping["libiszx"])
+#print(mapping["MZL224"])
 
 
-# In[82]:
+# In[47]:
 
 
 valid_chars = ''.join(sorted(list(set(''.join(k for k in mapping.keys())))))
@@ -161,7 +162,7 @@ valid_chars
 print(list(mapping["'u4"]))
 
 
-# In[83]:
+# In[48]:
 
 
 inf = ""
@@ -172,7 +173,7 @@ with open("ibus-tables-cuneiform.txt",'w') as outfile:
     outfile.write(inf)
     for reading, vals in mapping.items():
         if len(vals)>1:
-            for unic,name,prio in vals:
+            for unic,name,prio in sorted(list(vals)):
                 outfile.write(f"{reading}({name})\t{unic}\t{prio}\t### {name}\n")
         else:
             unic,name, prio = vals.pop()
