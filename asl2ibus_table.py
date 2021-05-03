@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[105]:
+# In[77]:
 
 
 from xml.dom import minidom
@@ -10,7 +10,7 @@ with open('ogsl.asl', 'r') as infile:
     asl = infile.read()
 
 
-# In[106]:
+# In[78]:
 
 
 reps = [
@@ -58,7 +58,7 @@ def to_ascii(s):
     
 
 
-# In[107]:
+# In[79]:
 
 
 def unistr2unicode(x):
@@ -69,51 +69,65 @@ print(unistr2unicode("x12000.x12094.x1223E"))
 print(unistr2unicode("x12000"))
 
 
-# In[108]:
+# In[80]:
 
 
-def maybeadd(reading,unic,sign=''):
+def maybeadd(reading, unic, sign='', prio = 1000):
     reading=to_ascii(reading).strip('|')
     sign=to_ascii(sign).strip('|')
     if reading not in mapping:
-        mapping[reading]={(unic,sign)}
+        mapping[reading]={(unic,sign,prio)}
     else:
-        mapping[reading].add((unic,sign))
+        mapping[reading].add((unic,sign,prio))
 
 
-# In[109]:
+# In[81]:
 
 
 mapping = {}
 
 funic = None
 unic = None
-form = False
+in_form = False
+listcodes = []
+in_sign = False
+
 for line in asl.splitlines():
     if line =="":
         continue
     if line.startswith("@sign"):
-        #print(line)
+        in_sign = True
         sign = line.split()[1]
-    if line=="@end sign":
-        if sign and unic and not form:
-            maybeadd(sign, unic)
-        if sign and funic and form: # end sign also ends last form
-            maybeadd(sign, funic)
-        form = False
+                
+    if line.strip()=="@end sign" :
+        if in_sign:
+            if sign and unic and not in_form:
+                maybeadd(sign, unic, sign)
+            if sign and funic and in_form: # end sign also ends last form
+                maybeadd(sign, funic, sign)
+            if listcodes != [] :
+                for listcode in listcodes:
+                    maybeadd(listcode, unic, sign, 500)
+                listcodes=[]
+        in_form = False
         unic = None
         funic = None
         sign = None
+        in_sign = False
+            
+    if line.startswith("@list") and not in_form:
+        listcode = line.split()[1]
+        listcodes.append(listcode)
         
     if line.startswith("@v"):
         reading = line.split()[1]
-        if sign and unic and not form:
+        if sign and unic and not in_form:
             maybeadd(reading, unic, sign)
-        if sign and funic and  form:
+        if sign and funic and  in_form:
             maybeadd(reading, funic, sign)
         
     if line.startswith("@ucode"):
-        if form:
+        if in_form:
             funic = unistr2unicode(line.split()[1])
         else:
             unic = unistr2unicode(line.split()[1])
@@ -121,28 +135,33 @@ for line in asl.splitlines():
     #    uname = unistr2unicode(line.split(maxsplit=1))[1]
         
     if line.startswith("@form"):
-        form = True
+        in_form = True
         foo, formcode, sign, *foo = line.split()
+        
     if line=="@end form":
-        form = False
+        in_form = False
         if sign and funic:
             maybeadd(sign, funic)
         funic = None
-        sign = None
+
     if line.startswith("@form"):
         pass
-mapping['darengal']
+print(mapping['darengal'])
+print(mapping['LAK797'])
+print(mapping["'u4"])
+print(mapping["libiszx"])
 
 
-# In[110]:
+# In[82]:
 
 
 valid_chars = ''.join(sorted(list(set(''.join(k for k in mapping.keys())))))
 #''.join(k for k in mapping.keys())
 valid_chars
+print(list(mapping["'u4"]))
 
 
-# In[111]:
+# In[83]:
 
 
 inf = ""
@@ -153,10 +172,11 @@ with open("ibus-tables-cuneiform.txt",'w') as outfile:
     outfile.write(inf)
     for reading, vals in mapping.items():
         if len(vals)>1:
-            for unic,name in vals:
-                outfile.write(f"{reading}({name})\t{unic}\t0\t### {name}\n")
+            for unic,name,prio in vals:
+                outfile.write(f"{reading}({name})\t{unic}\t{prio}\t### {name}\n")
         else:
-            unic,name = vals.pop()
-            outfile.write(f"{reading}\t{unic}\t0\t### {name}\n")
+            unic,name, prio = vals.pop()
+            outfile.write(f"{reading}\t{unic}\t{prio}\t### {name}\n")
     outfile.write("END_TABLE")
+print("Written")
 

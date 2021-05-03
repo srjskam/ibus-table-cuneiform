@@ -93,7 +93,7 @@ MAX_KEY_LENGTH = 20
 VALID_INPUT_CHARS={VALID_INPUTS}
 
 ### The key strokes to split inputted string.
-#SPLIT_KEYS = space
+SPLIT_KEYS = space
 
 ### The key strokes to commit the convert result to client.
 COMMIT_KEYS = space
