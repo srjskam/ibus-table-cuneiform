@@ -1,4 +1,4 @@
-package_name=ibus-tables-cuneiform_1.1.0_all
+package_name=ibus-table-cuneiform_1.1.0_all
 
 install: cuneiform.db
 	sudo cp cuneiform.db /usr/share/ibus-table/tables/
@@ -6,7 +6,7 @@ install: cuneiform.db
 	ibus-daemon -xrd
 	
 cuneiform.db: ibus-table-cuneiform.txt
-	ibus-table-createdb -s ibus-tables-cuneiform.txt -n cuneiform.db 
+	ibus-table-createdb -s ibus-table-cuneiform.txt -n cuneiform.db 
 
 #ibus-table-cuneiform.txt: ogsl-sl.xml xml2ibus_table.py
 #	./xml2ibus_table.py
@@ -29,7 +29,7 @@ ogsl-sl.xml:
 	wget https://github.com/oracc/coredata/blob/master/sign/ogsl-sl.xml?raw=true -O ogsl-sl.xml
 
 clean:
-	-rm ibus-tables-cuneiform.txt
+	-rm ibus-table-cuneiform.txt
 	-rm cuneiform.db
 	-rm xml2ibus_table.py
 	-rm -r $(package_name)

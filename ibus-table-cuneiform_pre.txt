@@ -1,0 +1,167 @@
+###
+### Cuneiform ibus tables
+###
+SCIM_Generic_Table_Phrase_Library_TEXT
+VERSION_1_0
+
+### Begin Table definition.
+BEGIN_DEFINITION
+
+### An unique id to distinguish this table among others.
+### Use uuidgen to generate this kind of id.
+UUID = b5ae57c8-2d23-431d-89aa-1363bd4eae07
+
+### A unique number indicates the version of this file.
+### For example the last modified date of this file.
+### This number must be less than 2^32.
+### Just make your table version-able
+SERIAL_NUMBER = {SERIAL}
+
+### ICON can be any format as long as your pygtk can recognized
+### the most widely ones are "png" and "svg", letter one is recommended
+# /usr/share/ibus-table/icons
+ICON = cuneiform.svg
+
+### The symbol to be displayed in IM switchers
+SYMBOL = 𒀭
+
+### The default name of this table, this is needed
+NAME = Cuneiform
+
+
+### The local names of this table 
+NAME.de_DE = Keilschrift 
+NAME.fi_FI = Nuolenpääkirjoitus
+
+### Description
+DESCRIPTION = This is a cuneiform engine table for IBus Table.
+
+### Supported languages of this table
+### sigle "zh_CN" just be recognized as zh_CN,
+### but "zh_CN, zh_HK" or more zh_XX will be recognized as zh;
+### and "en_US, zh_CN" will be just ignored.
+LANGUAGES = sux,akk,Sumerian,Akkadian,other
+
+### The author of this table
+AUTHOR = srjskam <srjskam@iki.fi>
+
+### Prompt string to be displayed in the status area, CN will be replaced by
+### the gettext tools in runtime as 中.
+STATUS_PROMPT = CN
+
+### Valid input chars.
+VALID_INPUT_CHARS={VALID_INPUTS}
+
+### Layout
+### This table can be used with any layout capable of typing ASCII.
+### Therefore, we should not require a special layout like “us”.
+LAYOUT = default
+
+### The max number of input keys for every phrase or character.
+MAX_KEY_LENGTH = 100
+
+### Use auto_commit mode as default
+AUTO_COMMIT = TRUE
+
+### Automatically selects the first phrase when typing
+AUTO_SELECT = TRUE
+
+### Use full width punctuation by default
+DEF_FULL_WIDTH_PUNCT = FALSE
+### Not use full width letter by default
+DEF_FULL_WIDTH_LETTER = FALSE
+
+### Whether user are allow to define phrase, default is true
+### You have to define the word construction rules below.
+### For input methods which do not input phrases, set this to False
+USER_CAN_DEFINE_PHRASE = FALSE
+
+### Whether support PinYin Mode, default is true.
+### this feature is just for Chinese, set it to False if your IM is not
+### Chinese.
+PINYIN_MODE = FALSE
+
+### If true then the phrases' frequencies will be adjusted dynamically
+### according your using frequency.
+DYNAMIC_ADJUST = FALSE
+
+### Some characters whose frequencies should be fix all the time, e.g. 
+### some punctuations
+### NO_CHECK_CHARS = 
+
+### Rules for constructing user defined phrase
+### "ce" stands for "ci equal", a Chinese English :), means "phrase length
+### equal to", thus ce2 -> phrase length equal to 2; and "ca" means "phrase
+### length equal or above", so ca4 -> phrase length equal or above 4.
+### p21 -> the 1st key of 2nd character in the phrase, and so on.
+### Each rule separate via ";". 
+### Example below is a complete rule-set, 
+### becuase [2,2] ∩ [3,3] ∩ [4,+∞] = [2,+∞], which is the range of length
+### of phrase. This have to be satisfied if you need ibus-table to build up
+### your own inputed phrase via your daily using.
+#RULES = ce2:p11+p12+p21+p22;ce3:p11+p21+p22+p31;ca4:p11+p21+p31+p41
+
+### The key strokes to page up the lookup table.
+PAGE_UP_KEYS = Page_Up
+
+### The key strokes to page down.
+PAGE_DOWN_KEYS = Page_Down
+
+### The key strokes to select candidiate phrases.
+### Usually "1,2,3,4,5,6,7,8,9" but if this conflicts with
+### characters one wants to use for input one can also
+### use something like “F1,F2,F3,F4,F5,F6,F7,F8,F9”
+SELECT_KEYS = F1,F2,F3,F4,F5,F6,F7,F8,F9
+
+### The default orientation of the candidate list
+### TRUE means the candidate list is vertical, FALSE means it is vertical
+ORIENTATION=TRUE
+
+# below this wasn't in the template
+
+### If true then a multi wildcard will be appended
+### at the end of inputing string automatically.
+AUTO_WILDCARD = TRUE
+
+### Single wildcard char (leave empty if you don’t want a wildcard character).
+SINGLE_WILDCARD_CHAR =
+
+### Multi wildcard char (leave empty if you don’t want a wildcard character).
+MULTI_WILDCARD_CHAR =
+
+
+### If true then the inputted string will be automatically splitted during inputing.
+AUTO_SPLIT = TRUE
+
+
+### If true then the preedit area will be filled up by the current candidate phrase automatically.
+AUTO_FILL = TRUE
+
+### If true then the lookup table will always be shown if there is any candidate phrase.
+### Otherwise the lookup table won't be shown unless the user requires it by moving the preedit caret left.
+ALWAYS_SHOW_LOOKUP = TRUE
+
+### Enable full width punctuation property
+USE_FULL_WIDTH_PUNCT = FALSE
+
+
+### Enable full width letter property
+USE_FULL_WIDTH_LETTER = FALSE
+
+
+### The key strokes to split inputted string.
+SPLIT_KEYS = space
+
+### The key strokes to commit the convert result to client.
+COMMIT_KEYS = space
+
+### The key strokes to forward the inputted string to client.
+##FORWARD_KEYS = space
+
+
+
+
+END_DEFINITION
+
+### Begin Table data.
+BEGIN_TABLE

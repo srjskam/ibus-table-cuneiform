@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[42]:
+# In[1]:
 
 
 from xml.dom import minidom
@@ -10,7 +10,7 @@ with open('ogsl.asl', 'r') as infile:
     asl = infile.read()
 
 
-# In[43]:
+# In[2]:
 
 
 reps = [
@@ -58,7 +58,7 @@ def to_ascii(s):
     
 
 
-# In[44]:
+# In[3]:
 
 
 def unistr2unicode(x):
@@ -69,7 +69,7 @@ print(unistr2unicode("x12000.x12094.x1223E"))
 print(unistr2unicode("x12000"))
 
 
-# In[45]:
+# In[4]:
 
 
 def maybeadd(reading, unic, sign='', prio = 1000):
@@ -81,7 +81,7 @@ def maybeadd(reading, unic, sign='', prio = 1000):
         mapping[reading].add((unic,sign,prio))
 
 
-# In[46]:
+# In[5]:
 
 
 mapping = {}
@@ -153,7 +153,7 @@ print(mapping["libiszx"])
 #print(mapping["MZL224"])
 
 
-# In[47]:
+# In[6]:
 
 
 valid_chars = ''.join(sorted(list(set(''.join(k for k in mapping.keys())))))
@@ -162,14 +162,17 @@ valid_chars
 print(list(mapping["'u4"]))
 
 
-# In[48]:
+# In[7]:
 
 
 inf = ""
-with open("ibus-tables-cuneiform_pre.txt",'r') as infile:
+from calendar import timegm
+from time import gmtime
+
+with open("ibus-table-cuneiform_pre.txt",'r') as infile:
     inf = infile.read()
-    inf = inf.replace('{VALID_INPUTS}', valid_chars)
-with open("ibus-tables-cuneiform.txt",'w') as outfile:
+    inf = inf.format(VALID_INPUTS= valid_chars, SERIAL=timegm(gmtime()))
+with open("ibus-table-cuneiform.txt",'w') as outfile:
     outfile.write(inf)
     for reading, vals in mapping.items():
         if len(vals)>1:

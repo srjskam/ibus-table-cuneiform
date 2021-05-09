@@ -5,6 +5,6 @@ Priority: optional
 Architecture: all
 Depends: ibus-table, ibus
 Maintainer: srjskam@iki.fi
-Description: Cuneiform input method for ibus-table
+Description: ibus-table input method: Cuneiform
  An input method to write Sumero-Akkadian cuneiform using IBUS table engine. 
  https://github.com/srjskam/ibus-table-cuneiform
